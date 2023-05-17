@@ -1,0 +1,104 @@
+{
+  "Clusters": [
+    {
+      "Name": "Cluster1",
+      "Login": "admin",
+      "Password": "password",
+      "Hosts": [
+        {
+          "Name": "proxmox1",
+          "Address": "192.168.1.201",
+          "Port": "8006",
+          "Machines": [
+            {
+              "MachineId": "100"
+            },
+            {
+              "MachineId": "101"
+            },
+            {
+              "MachineId": "102"
+            }
+          ]
+
+        },
+        {
+          "Name": "proxmox2",
+          "Address": "192.168.1.202",
+          "Port": "8006",
+          "Machines": [
+            {
+              "MachineId": "103"
+            },
+            {
+              "MachineId": "104"
+            },
+            {
+              "MachineId": "105"
+            }
+          ]
+
+        },
+        {
+          "Name": "proxmox3",
+          "Address": "192.168.1.203",
+          "Port": "8006",
+          "Machines": [
+
+          ]
+
+        }
+      ]
+    },
+    {
+      "Name": "Cluster2",
+      "Login": "admin2",
+      "Password": "password2",
+      "Hosts": [
+        {
+          "Name": "proxmox4",
+          "Address": "192.168.1.204",
+          "Port": "8006",
+          "Machines": [
+            {
+              "MachineId": "106"
+            },
+            {
+              "MachineId": "107"
+            },
+            {
+              "MachineId": "108"
+            }
+          ]
+
+        },
+        {
+          "Name": "proxmox5",
+          "Address": "192.168.1.205",
+          "Port": "8006",
+          "Machines": [
+            {
+              "MachineId": "109"
+            },
+            {
+              "MachineId": "110"
+            },
+            {
+              "MachineId": "111"
+            }
+          ]
+
+        },
+        {
+          "Name": "proxmox6",
+          "Address": "192.168.1.206",
+          "Port": "8006",
+          "Machines": [
+
+          ]
+
+        }
+      ]
+    }
+  ]
+}
