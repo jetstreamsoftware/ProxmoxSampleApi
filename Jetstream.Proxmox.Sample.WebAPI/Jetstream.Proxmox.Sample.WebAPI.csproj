@@ -7,11 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Application\Models" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="Corsinvest.ProxmoxVE.Api" Version="7.4.3" />
+      <PackageReference Include="FluentResults" Version="3.15.2" />
     </ItemGroup>
 
 </Project>
