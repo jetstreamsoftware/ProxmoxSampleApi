@@ -17,4 +17,7 @@ var app = builder.Build();
 app.MapGroup("/api/clusters")
     .MapClustersEndpoints();
 
+app.MapGroup("/api/machines")
+    .MapMachinesEndpoints();
+
 app.Run();

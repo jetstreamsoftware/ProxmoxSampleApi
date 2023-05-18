@@ -1,10 +1,12 @@
-using Corsinvest.ProxmoxVE.Api;
-using Jetstream.Proxmox.Sample.WebAPI.Application.Common.Interfaces;
+﻿using Corsinvest.ProxmoxVE.Api;
+using Jetstream.Proxmox.Sample.ProxmoxWrapper.Base;
+using Jetstream.Proxmox.Sample.ProxmoxWrapper.Exceptions;
+using Jetstream.Proxmox.Sample.ProxmoxWrapper.Models;
+
 using PveVmidItem = Corsinvest.ProxmoxVE.Api.PveClient.PveNodes.PveNodeItem.PveQemu.PveVmidItem;
 
-namespace Jetstream.Proxmox.Sample.WebAPI.Infrastructure.Services;
+namespace Jetstream.Proxmox.Sample.ProxmoxWrapper;
 
-// Wrapper library for PveClient providing additional logic and mechanisms
 public class ProxmoxClientProvider : IProxmoxClientProvider
 {
     private readonly IList<ProxmoxCluster> _proxmoxClusters;
@@ -54,7 +56,7 @@ public class ProxmoxClientProvider : IProxmoxClientProvider
 
     private async Task<PveVmidItem> GetMachine(string clusterName, string hostName, int machineId)
     {
-        
+        throw new NotImplementedException();
     }
 
     private static async Task<PveClient?> CreateClient(ProxmoxCluster cluster, ProxmoxHost host)
@@ -69,62 +71,5 @@ public class ProxmoxClientProvider : IProxmoxClientProvider
         }
 
         return null;
-    }
-}
-
-public class ProxmoxCluster
-{
-    public string Name { get; init; }
-    public string Login { get; init; }
-    public string Password { get; init; }
-    public List<ProxmoxHost> Hosts { get; init; }
-}
-
-public class ProxmoxHost
-{
-    public string Name { get; init; }
-    public string Address { get; init; }
-    public string Port { get; init; }
-}
-
-public class ProxmoxException : Exception
-{
-    public ProxmoxException(string message)
-        : base(message)
-    {
-        
-    }
-}
-
-public class InternalProxmoxException : ProxmoxException
-{
-    public InternalProxmoxException()
-        : base("There was an error in the Proxmox response")
-    {
-        
-    }
-
-    public InternalProxmoxException(string message)
-        : base(message)
-    {
-        
-    }
-}
-
-public class ResourceNotFoundException : ProxmoxException
-{
-    public ResourceNotFoundException(string type, object identifier)
-        : base($"The resource of type '{type}' with identifier '{identifier}' cannot be found in the config.")
-    {
-        
-    }
-}
-
-public class NoActiveHostsException : ProxmoxException
-{
-    public NoActiveHostsException(string clusterName)
-        : base($"No active hosts found in the cluster '{clusterName}'")
-    {
-        
     }
 }

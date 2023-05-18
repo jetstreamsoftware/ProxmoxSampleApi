@@ -1,5 +1,4 @@
-namespace Jetstream.Proxmox.Sample.WebAPI.Application.Common.Interfaces;
-
+namespace Jetstream.Proxmox.Sample.ProxmoxWrapper.Base;
 
 public interface IProxmoxClientProvider
 {

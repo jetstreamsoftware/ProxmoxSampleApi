@@ -1,8 +1,10 @@
+using Jetstream.Proxmox.Sample.ProxmoxWrapper;
+using Jetstream.Proxmox.Sample.ProxmoxWrapper.Base;
 using Jetstream.Proxmox.Sample.WebAPI.Application.Common.Interfaces;
+using Jetstream.Proxmox.Sample.WebAPI.Infrastructure.Helpers;
 using Jetstream.Proxmox.Sample.WebAPI.Infrastructure.Persistence;
 using Jetstream.Proxmox.Sample.WebAPI.Infrastructure.Repositories;
 using Jetstream.Proxmox.Sample.WebAPI.Infrastructure.Services;
-using Jetstream.Proxmox.Sample.WebAPI.Infrastructure.Wrapper;
 
 namespace Jetstream.Proxmox.Sample.WebAPI.Infrastructure;
 

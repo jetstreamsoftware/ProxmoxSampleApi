@@ -1,9 +1,9 @@
+using Jetstream.Proxmox.Sample.ProxmoxWrapper.Models;
 using Jetstream.Proxmox.Sample.WebAPI.Application.Models;
-using Jetstream.Proxmox.Sample.WebAPI.Infrastructure.Services;
 
-namespace Jetstream.Proxmox.Sample.WebAPI.Infrastructure.Wrapper;
+namespace Jetstream.Proxmox.Sample.WebAPI.Infrastructure.Helpers;
 
-public static class Extensions
+public static class ProxmoxProviderExtensions
 {
     public static IList<ProxmoxCluster> ToProxmoxClustersList(this IEnumerable<Cluster> clusters)
     {
