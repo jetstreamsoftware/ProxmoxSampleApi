@@ -33,7 +33,7 @@ public class ProxmoxService : IProxmoxService
     private async Task<MachinesListResponse> _GetMachinesList(string clusterName, string hostName)
     {
         var response = await _clientProvider.GetMachinesList(clusterName, hostName);
-        return (MachinesListResponse)response;
+        return response.ToMachinesListResponse();
     }
 
     private async Task<SnapshotsListResponse> _GetSnapshotsList(int machineId)
@@ -41,7 +41,7 @@ public class ProxmoxService : IProxmoxService
         var (cluster, host) = ResolveMachineHost(machineId);
             
         var response = await _clientProvider.GetMachineSnapshots(cluster.Name, host.Name, machineId);
-        return (SnapshotsListResponse)response;
+        return response.ToSnapshotsListResponse();
     }
 
     private async Task<MachineStatusDto> _GetResourcesUtilization(int machineId)
@@ -49,7 +49,7 @@ public class ProxmoxService : IProxmoxService
         var (cluster, host) = ResolveMachineHost(machineId);
         
         var response = await _clientProvider.GetMachineStatus(cluster.Name, host.Name, machineId);
-        return (MachineStatusDto)response;
+        return response;
     }
 
     private (Cluster, Host) ResolveMachineHost(int machineId)

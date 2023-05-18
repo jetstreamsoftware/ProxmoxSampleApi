@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <PackageReference Include="Corsinvest.ProxmoxVE.Api" Version="7.4.3" />
+      <PackageReference Include="Corsinvest.ProxmoxVE.Api.Extension" Version="7.4.3" />
     </ItemGroup>
 
     <ItemGroup>
