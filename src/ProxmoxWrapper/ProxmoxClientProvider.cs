@@ -51,6 +51,10 @@ internal class ProxmoxClientProvider : IProxmoxClientProvider
 
     private async Task<PveVmidItem> GetMachine(string clusterName, string hostName, int machineId)
     {
+        // When host does not exists
+        // Get cluster and ensure the hosts exist
+        EnsureClusterExists(clusterName, hostName);
+        
         // Order clusters so that the provided cluster is the first one
         foreach (var cluster in _proxmoxClusters.OrderByDescending(clstr => clstr.Name == clusterName)
                      .ThenBy(clstr => clstr))
@@ -83,7 +87,7 @@ internal class ProxmoxClientProvider : IProxmoxClientProvider
         throw new ResourceNotFoundException(nameof(PveVmidItem), machineId);
     }
 
-    private async Task<PveClient?> TryCreateClient(string clusterName, string hostName)
+    private ProxmoxCluster GetCluster(string clusterName, string hostName)
     {
         var cluster = _proxmoxClusters.FirstOrDefault(cluster => cluster.Name == clusterName);
         if (cluster is null)
@@ -91,6 +95,24 @@ internal class ProxmoxClientProvider : IProxmoxClientProvider
         
         if (cluster.Hosts.All(host => host.Name != hostName))
             throw new ResourceNotFoundException(nameof(ProxmoxHost), hostName);
+
+        return cluster;
+    }
+
+    private void EnsureClusterExists(string clusterName, string hostName)
+    {
+        var cluster = _proxmoxClusters.FirstOrDefault(cluster => cluster.Name == clusterName);
+        if (cluster is null)
+            throw new ResourceNotFoundException(nameof(ProxmoxCluster), clusterName);
+        
+        if (cluster.Hosts.All(host => host.Name != hostName))
+            throw new ResourceNotFoundException(nameof(ProxmoxHost), hostName);
+    }
+
+    private async Task<PveClient?> TryCreateClient(string clusterName, string hostName)
+    {
+        // Get cluster and ensure the hosts exist
+        var cluster = GetCluster(clusterName, hostName);
         
         // Order hosts so that the first one is specified host, but in case there is any error, try login with another hosts
         foreach (var proxmoxHost in cluster.Hosts.OrderByDescending(hst => hst.Name == hostName).ThenBy(hst => hst))
