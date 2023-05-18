@@ -15,13 +15,8 @@ public static class DependencyInjection
         serviceCollection.AddSingleton<DataContext>(_ => DataContext.CreateFromJson("sampleDatabase.json"));
         
         serviceCollection.AddScoped<IClustersRepository, ClustersRepository>();
-        serviceCollection.AddScoped<IProxmoxClientProvider, ProxmoxClientProvider>(provider =>
-        {
-            var repository = provider.GetRequiredService<IClustersRepository>();
-            var resources = repository.GetAll();
-
-            return new ProxmoxClientProvider(resources.ToProxmoxClustersList());
-        });
+        serviceCollection.AddProxmoxProvider(provider =>
+            provider.GetRequiredService<IClustersRepository>().GetAll().ToProxmoxClustersList());
         serviceCollection.AddScoped<IProxmoxService, ProxmoxService>();
     }
 }

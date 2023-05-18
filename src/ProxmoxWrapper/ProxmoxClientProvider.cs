@@ -7,7 +7,7 @@ using PveVmidItem = Corsinvest.ProxmoxVE.Api.PveClient.PveNodes.PveNodeItem.PveQ
 
 namespace Jetstream.Proxmox.Sample.ProxmoxWrapper;
 
-public class ProxmoxClientProvider : IProxmoxClientProvider
+internal class ProxmoxClientProvider : IProxmoxClientProvider
 {
     private readonly IList<ProxmoxCluster> _proxmoxClusters;
 
